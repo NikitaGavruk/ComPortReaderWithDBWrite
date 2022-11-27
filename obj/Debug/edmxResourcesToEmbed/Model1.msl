@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="adonetdbModelStoreContainer" CdmEntityContainer="adonetdbEntities">
+    <EntitySetMapping Name="COMDataBases">
+      <EntityTypeMapping TypeName="adonetdbModel.COMDataBase">
+        <MappingFragment StoreEntitySet="COMDataBase">
+          <ScalarProperty Name="Part" ColumnName="Part" />
+          <ScalarProperty Name="Descr" ColumnName="Descr" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Last_accesed" ColumnName="Last accesed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
