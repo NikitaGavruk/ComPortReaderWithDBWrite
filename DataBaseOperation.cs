@@ -22,15 +22,15 @@ namespace ComportWriteInBD
                 connection.Open();
                 try
                 {
-                    int count = new SqlCommand($"SELECT Count FROM COMDataBase WHERE Part='{part}'", connection).ExecuteNonQuery();
-                    count++;
+                    var count = new SqlCommand($"SELECT Count FROM COMDataBase WHERE Part='{part}'", connection).ExecuteScalar();
                     UpdateObject(part, dateTime, count);
+
                 }
-                catch (Exception ex)
+                    catch(Exception ex)
                 {
-                    SqlCommand command = new SqlCommand($"INSERT INTO COMDataBase (Part, Descr, Count, Last_accesed) VALUES ({component}, {component}, {1}, {dateTime})", connection);
+                    SqlCommand command = new SqlCommand($"INSERT INTO COMDataBase (Part, Descr, Count, [Last accesed]) VALUES ('{part}', '{component}', '{1}', '{dateTime}')", connection);
                     int number = command.ExecuteNonQuery();
-                    Console.WriteLine("Добавлено объектов: {0}", number);
+                    Console.WriteLine("Objects wrote: {0}", number);
                 }
 
             }
@@ -40,15 +40,15 @@ namespace ComportWriteInBD
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand($"UPDATE COMDataBase SET Count={count} AND SET Last_accesed={dateTime} WHERE Part='{part}'", connection);
+                count++;
+                SqlCommand command = new SqlCommand($"UPDATE COMDataBase SET Count='{count}', [Last accesed]='{dateTime}' WHERE Part='{part}'", connection);
                 int number = command.ExecuteNonQuery();
-                Console.WriteLine("Обновлено объектов: {0}", number);
+                Console.WriteLine("Objects updated: {0}", number);
             }
         }
         private static string EditPart()
         {
-            Console.Write("Введите part: ");
+            Console.Write("Write part: ");
             return Console.ReadLine();
         }
     }

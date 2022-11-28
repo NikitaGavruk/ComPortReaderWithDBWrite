@@ -45,7 +45,9 @@ public class PortChat
         {
             try
             {
-                string message = _serialPort.ReadLine();
+                string message = _serialPort.ReadExisting();
+                message = message.Replace("\r\n", " ");
+                message = message.Replace("testing...", " ");
                 Console.WriteLine(message);
                 DataBaseOperation.WriteToDB(message);
             }
